@@ -1,0 +1,30 @@
+From 7b00a8cb19e90d3ae00070f82807fb1a9f38fc8e Mon Sep 17 00:00:00 2001
+From: Michael Richardson <mcr@sandelman.ca>
+Date: Sun, 20 Jan 2019 21:12:29 -0500
+Subject: [PATCH] do not call ip route flush as it fails in containers
+
+---
+ programs/_updown.netkey/_updown.netkey.in | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/programs/_updown.netkey/_updown.netkey.in b/programs/_updown.netkey/_updown.netkey.in
+index c0cf717a6..9e6277d6c 100644
+--- a/programs/_updown.netkey/_updown.netkey.in
++++ b/programs/_updown.netkey/_updown.netkey.in
+@@ -188,13 +188,11 @@ done
+ # Meddling with this stuff should not be necessary and requires great care.
+ uproute() {
+     doroute replace
+-    ip route flush cache
+ }
+ 
+ 
+ downroute() {
+     doroute del
+-    ip route flush cache
+ }
+ 
+ downrule() {
+-- 
+2.11.0
+
